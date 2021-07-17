@@ -1,0 +1,25 @@
+before:
+  hooks:
+    - go mod download
+
+builds:
+  - main: .
+    binary: "{{ .ProjectName }}_v{{ .Version }}"
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+      - -tags=netgo
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+
+changelog:
+  skip: true
+
+checksum:
+  name_template: "checksums.txt"
