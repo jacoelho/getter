@@ -16,7 +16,7 @@ build:
 
 .PHONY: vet
 vet:
-	go vet ./...
+	go vet -v ./...
 
 .PHONY: install
 install:
