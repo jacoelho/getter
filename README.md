@@ -80,6 +80,18 @@ e.GetExample().GetName().GetTitle()
 // ""
 ```
 
+The code generated looks like:
+
+```go
+func (v *Name) GetTitle() (r string) {
+	if v == nil {
+		return
+	}
+	r = v.Title
+	return
+}
+```
+
 ## License
 
 GNU General Public License v3.0 or later
