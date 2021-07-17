@@ -51,7 +51,7 @@ if e.Header!= nil {
 }
 ```
 
-Although it is an ideomatic solution it gets annoying and prune to error if you are working with multiple nested structured and you may end-up with something like:
+Although it is an idiomatic solution, it gets old really fast and prune to error if you are working with multiple nested structures. The end solution may end-up with something like:
 
 ```go
 if e.Header != nil && e.Header.Name != nil && e.Header.Name.Title != nil {
