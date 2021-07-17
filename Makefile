@@ -18,6 +18,10 @@ build:
 vet:
 	go vet ./...
 
+.PHONY: install
+install:
+	go install ./...
+
 .PHONY: ci-tidy
 ci-tidy:
 	go mod tidy
