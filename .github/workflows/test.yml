@@ -13,5 +13,4 @@ jobs:
       - run: make ci-tidy
       - run: make install
       - run: cd test && make -f ../Makefile generate
-      - run: cd test && ls -la
       - run: cd test && make -f ../Makefile vet

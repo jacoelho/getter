@@ -10,10 +10,6 @@ import (
 	"golang.org/x/tools/go/packages"
 )
 
-var (
-	typeNames = flag.String("type", "", "comma-separated list of type names; must be set")
-)
-
 const (
 	usage = `Usage of getter:
 getter [flags] -type T [directory]
@@ -21,6 +17,8 @@ getter [flags] -type T files...
 Options:
 `
 )
+
+var typeNames = flag.String("type", "", "comma-separated list of type names; must be set")
 
 func main() {
 	flag.Usage = func() {
@@ -68,7 +66,7 @@ func main() {
 
 		goFile := os.Getenv("GOFILE")
 		ext := filepath.Ext(goFile)
-		baseFilename := goFile[0 : len(goFile)-len(ext)]
+		baseFilename := goFile[:len(goFile)-len(ext)]
 		targetFilename := baseFilename + "_" + strings.ToLower(t) + "_gen.go"
 
 		if err := f.Save(targetFilename); err != nil {
@@ -84,6 +82,7 @@ func loadPackage(paths ...string) (*packages.Package, error) {
 		Tests: false,
 		Env:   os.Environ(),
 	}
+
 	pkgs, err := packages.Load(cfg, paths...)
 	if err != nil {
 		return nil, fmt.Errorf("loading packages for inspection: %w", err)
